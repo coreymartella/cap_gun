@@ -125,20 +125,17 @@ module CapGun
     def body
       body = "#{summary}\n"
       body << "#{comment}\n"
+      body << "#{scm_details}\n"
       body << "Deployment details\n"
       body << "====================\n"
-      body << "Release: #{capistrano[:current_release]}\n"
       body << "Release Time: #{release_time}\n"
-      body << "Release Revision: #{capistrano[:current_revision]}\n"
+      body << "Release Revision: #{capistrano[:repository_url]}/commit/#{capistrano[:current_revision]}\n"
       body << "\n"
-      body << "Previous Release: #{capistrano[:previous_release]}\n"
       body << "Previous Release Time: #{previous_release_time}\n"
-      body << "Previous Release Revision: #{previous_revision}\n"
+      body << "Previous Release Revision: #{capistrano[:repository_url]}/commit/#{previous_revision}\n"
       body << "\n"
-      body << "Repository: #{repository}\n"
-      body << "Deploy path: #{capistrano[:deploy_to]}\n"
+      body << "Repository: #{capistrano[:repository_url]}\n"
       body << "Domain: #{capistrano[:domain]}\n" if capistrano[:domain]
-      body << "#{scm_details}\n"
       body
     end
 
